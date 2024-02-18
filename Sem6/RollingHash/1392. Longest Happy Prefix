@@ -1,0 +1,21 @@
+class Solution {
+    public String longestPrefix(String s) {
+        int[] dp=new int[s.length()];
+        int lenLPS=0;
+        for(int i=1;i<dp.length;){
+            if(s.charAt(i) == s.charAt(lenLPS)){
+                lenLPS++;
+                dp[i]=lenLPS;
+                i++;
+            }
+            else{
+                if(lenLPS>0){
+                    lenLPS=dp[lenLPS-1];
+                }else{
+                    i++;
+                }
+            }
+        }
+        return s.substring(0,dp[s.length()-1]);
+    }
+}
